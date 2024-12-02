@@ -1,7 +1,6 @@
 package com.example.mvvmbrushup
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -13,8 +12,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mvvmbrushup.ui.Screen
 import com.example.mvvmbrushup.ui.coin_detail.CoinDetailScreen
-import com.example.mvvmbrushup.ui.coin_list.components.CoinListScreen
+import com.example.mvvmbrushup.ui.contact_directory.ContactsDirectoryScreen
 import com.example.mvvmbrushup.ui.search.SearchScreen
+import com.example.mvvmbrushup.ui.splash_screen.SplashScreen
 import com.example.mvvmbrushup.ui.theme.MVVMBrushupTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,12 +31,16 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.CoinListScreen.route
+                        startDestination = Screen.SplashScreen.route
                     ) {
+                        composable(route = Screen.SplashScreen.route) {
+                            SplashScreen(navController)
+                        }
+
                         composable(
-                            route = Screen.CoinListScreen.route,
+                            route = Screen.ContactsDirectoryScreen.route,
                         ) {
-                            CoinListScreen(navController)
+                            ContactsDirectoryScreen(navController)
                         }
                         composable(
                             route = Screen.CoinDetailScreen.route + "/{coinId}"
@@ -50,7 +54,7 @@ class MainActivity : ComponentActivity() {
                         composable(
                             route = Screen.SearchScreen.route + "/{coinId}"
                         ) {
-                            SearchScreen(navController,coinId)
+                            SearchScreen(navController, coinId)
                         }
                     }
 
