@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mvvmbrushup.ui.Screen
 import com.example.mvvmbrushup.ui.coin_detail.CoinDetailScreen
 import com.example.mvvmbrushup.ui.coin_list.components.CoinListScreen
+import com.example.mvvmbrushup.ui.contact_directory.ContactsDirectoryScreen
 import com.example.mvvmbrushup.ui.search.SearchScreen
 import com.example.mvvmbrushup.ui.theme.MVVMBrushupTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,12 +32,12 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.CoinListScreen.route
+                        startDestination = Screen.ContactsDirectoryScreen.route
                     ) {
                         composable(
-                            route = Screen.CoinListScreen.route,
+                            route = Screen.ContactsDirectoryScreen.route,
                         ) {
-                            CoinListScreen(navController)
+                            ContactsDirectoryScreen(navController)
                         }
                         composable(
                             route = Screen.CoinDetailScreen.route + "/{coinId}"
